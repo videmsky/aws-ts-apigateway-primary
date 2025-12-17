@@ -1,28 +1,63 @@
-name: Pulumi QA Deployments in dev environment
+name: Dev Environment Deployment
 on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - 'feature/**'
 permissions:
   id-token: write
   contents: read
 jobs:
-  preview-qa:
-    name: Preview
+  preview:
+    name: Preview Dev Stack
     runs-on: ubuntu-latest
-    # runs-on: arc-runner-set
     if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4.0.2
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
       - run: npm install
+      - uses: pulumi/auth-actions@v1
+        with:
+          organization: team-ce
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: user:laci-pulumi-corp
       - uses: pulumi/actions@v5
         with:
           command: preview
           stack-name: team-ce/dev
-          upsert: true  
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }} 
+          upsert: true
+  deploy:
+    name: Deploy to Dev Stack
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/feature/')
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm install
+      - uses: pulumi/auth-actions@v1
+        with:
+          organization: team-ce
+          requested-token-type: urn:pulumi:token-type:access_token:personal
+          scope: user:laci-pulumi-corp
+      - name: Preview Changes
+        uses: pulumi/actions@v5
+        with:
+          command: preview
+          stack-name: team-ce/dev
+          upsert: true
+      - name: Deploy Changes
+        uses: pulumi/actions@v5
+        with:
+          command: up
+          stack-name: team-ce/dev
+          upsert: true
+
+    

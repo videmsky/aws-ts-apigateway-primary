@@ -6,4 +6,4 @@ config:
   aws-ts-apigateway-primary:pulumiAccessToken:
     secure: AAABAJQ8jtCMN/eCHNe3IK8jqaap1tQhGCkMhzyMWVDTXhLRQAcPi1I1e8zZpDdDqT0Ez0+sAFmwEuSRrnhEubh/9VRqucuW99MvVQ==
 environment:
-  - lotctl/dev
+  - lotctl/staging
