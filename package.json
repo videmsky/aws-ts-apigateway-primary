@@ -1,0 +1,17 @@
+{
+    "name": "aws-ts-apigateway-primary",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.953.0",
+        "@aws-sdk/lib-dynamodb": "^3.953.0",
+        "@pulumi/aws": "^7.0.0",
+        "@pulumi/aws-apigateway": "^3.0.0",
+        "@pulumi/pulumi": "^3.113.0",
+        "@pulumi/pulumiservice": "^0.32.0",
+        "@videmsky/aws-vpc": "file:sdks/videmsky-aws-vpc"
+    }
+}

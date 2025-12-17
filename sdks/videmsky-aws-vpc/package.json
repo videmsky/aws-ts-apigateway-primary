@@ -1,0 +1,24 @@
+{
+    "name": "@videmsky/aws-vpc",
+    "version": "1.0.0",
+    "main": "bin/index.js",
+    "scripts": {
+        "build": "tsc",
+        "postinstall": "node ./scripts/postinstall.js"
+    },
+    "dependencies": {
+        "@pulumi/aws": "6.80.0",
+        "@pulumi/pulumi": "^3.142.0",
+        "@types/node": "^18",
+        "typescript": "^4.3.5"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "pulumi": {
+        "resource": true,
+        "name": "aws-vpc",
+        "version": "1.0.0",
+        "server": "git://github.com/videmsky/pulumi-aws-vpc-component"
+    }
+}
