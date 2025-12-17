@@ -4,6 +4,6 @@ config:
   aws-ts-apigateway-primary:networking: team-ce/layer1-network/lotctl
   aws-ts-apigateway-primary:security: team-ce/layer2-security/lotctl
   aws-ts-apigateway-primary:pulumiAccessToken:
-    secure: AAABAJQ8jtCMN/eCHNe3IK8jqaap1tQhGCkMhzyMWVDTXhLRQAcPi1I1e8zZpDdDqT0Ez0+sAFmwEuSRrnhEubh/9VRqucuW99MvVQ==
+    secure: AAABAOGS92n+6MD/LpKVuO8Tog8tD2gVUj12BW+u8A5AbESuZYh2YUHQefjmxenBZqlAcTmgPqKJva9dvuIGh6UfCzyDPN2/iek0LQ==
 environment:
   - default/prod
