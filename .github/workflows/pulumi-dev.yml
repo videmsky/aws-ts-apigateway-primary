@@ -1,0 +1,28 @@
+name: Pulumi QA Deployments in dev environment
+on:
+  pull_request:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  preview-qa:
+    name: Preview
+    runs-on: ubuntu-latest
+    # runs-on: arc-runner-set
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm install
+      - uses: pulumi/actions@v5
+        with:
+          command: preview
+          stack-name: team-ce/dev
+          upsert: true  
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }} 
