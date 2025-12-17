@@ -1,16 +1,15 @@
-name: Pulumi QA Deployments in dev environment
+name: Production Environment Deployment
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
 permissions:
   id-token: write
   contents: read
 jobs:
-  preview-qa:
-    name: Preview
+  deploy:
+    name: Deploy to Production Stack
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4.0.2
@@ -23,10 +22,15 @@ jobs:
           organization: team-ce
           requested-token-type: urn:pulumi:token-type:access_token:personal
           scope: user:laci-pulumi-corp
-      - uses: pulumi/actions@v5
+      - name: Preview Changes
+        uses: pulumi/actions@v5
         with:
           command: preview
           stack-name: team-ce/prod
-          upsert: true  
-        # env:
-        #   PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }} 
+          upsert: true
+      - name: Deploy Changes
+        uses: pulumi/actions@v5
+        with:
+          command: up
+          stack-name: team-ce/prod
+          upsert: true 
