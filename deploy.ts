@@ -24,6 +24,7 @@ const deploymentSettings = new service.DeploymentSettings(`${name}-deployment-se
     git: {
       branch: "refs/heads/main",
       repoUrl: "https://github.com/videmsky/aws-ts-apigateway-primary.git",
+      // repoUrl: "https://github.com/pulumi-pequod/aws-ts-apigateway-primary.git",
     }
   }
 });
