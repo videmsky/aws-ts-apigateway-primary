@@ -1,0 +1,9 @@
+config:
+  aws:region: us-west-2
+  aws-ts-apigateway-primary:name: lotctl
+  aws-ts-apigateway-primary:networking: team-ce/layer1-network/lotctl
+  aws-ts-apigateway-primary:security: team-ce/layer2-security/lotctl
+  aws-ts-apigateway-primary:pulumiAccessToken:
+    secure: AAABANAqDXrrRPqbh4YSBUgpn25wnKswT53hx11CCX5AOspOnGwIxjzs5AxXGPDrrHA8aoGdTGNjbAyXBQG/P8NPPoksfsmfYgdByg==
+environment:
+  - lotctl/dev
