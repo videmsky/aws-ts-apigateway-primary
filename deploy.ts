@@ -29,17 +29,17 @@ const deploymentSettings = new service.DeploymentSettings(`${name}-deployment-se
   }
 });
 
-// const driftSchedule = new service.DriftSchedule(`${name}-driftSchedule`, {
-//   organization: org,
-//   project: project,
-//   stack: stack,
-//   scheduleCron: "0 */4 * * *",
-//   autoRemediate: true
-// }, {dependsOn: [deploymentSettings]})
+const driftSchedule = new service.DriftSchedule(`${name}-driftSchedule`, {
+  organization: org,
+  project: project,
+  stack: stack,
+  scheduleCron: "0 */4 * * *",
+  autoRemediate: true
+}, {dependsOn: [deploymentSettings]})
 
-// const ttlSchedule = new service.TtlSchedule(`${name}-ttlSchedule`, {
-//   organization: org,
-//   project: project,
-//   stack: stack,
-//   timestamp: "2025-09-30T00:00:00Z"
-// }, {dependsOn: [deploymentSettings]})
+const ttlSchedule = new service.TtlSchedule(`${name}-ttlSchedule`, {
+  organization: org,
+  project: project,
+  stack: stack,
+  timestamp: "2025-02-14T00:00:00Z"
+}, {dependsOn: [deploymentSettings]})
