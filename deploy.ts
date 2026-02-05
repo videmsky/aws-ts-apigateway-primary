@@ -41,5 +41,5 @@ const ttlSchedule = new service.TtlSchedule(`${name}-ttlSchedule`, {
   organization: org,
   project: project,
   stack: stack,
-  timestamp: "2025-02-14T00:00:00Z"
+  timestamp: "2026-02-14T00:00:00Z"
 }, {dependsOn: [deploymentSettings]})
